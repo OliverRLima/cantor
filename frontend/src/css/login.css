@@ -1,0 +1,200 @@
+/*Divs Formulário*/
+
+.img-logo-login{
+  margin: 0 0 29em 0;
+}
+
+
+.login-all {
+  width: 100%;  
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-image: url('../img/imgLogin.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+.login-secundary{
+    width: 710px;
+    height: 760px;
+    margin-left:auto;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #00000085;
+  }
+  
+  /* Header */
+
+  .login-form1 {
+    font-family: Nunito, sans-serif;
+    font-size: 32px;
+    color: #ffffff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 32px;
+  
+    width: 100%;
+    display: block;
+  }
+  
+  .login-form2 {
+      font-family: Nunito, sans-serif;
+      font-size: 25px;
+      color: #ffffff;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 32px;
+    
+      width: 100%;
+      display: block;
+    }
+
+  .login-linha {
+    background-color: #ffc800;
+    width: 78%;
+    }
+    
+    /* Corpo */
+    
+    .info-login {
+        color: white;
+        font-size: 20px;
+        margin-left: 104px;
+    }
+
+.login-div1 {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-top: 68px
+}
+
+
+
+.login-input1 {
+  font-size: 18px;
+  line-height: 1.2;
+  color: #686868;
+
+  display: block;
+  width: 78%;
+  background: #e6e6e6;
+  height: 62px;
+  margin-left: 106px;
+  border-radius: 8px;
+  padding: 0 30px 0 10px;
+  height: 40px;
+}
+
+
+.login-div2 {
+    position: relative;
+    width: 52%;
+    z-index: 1;
+    margin-top: 30px
+  }
+  
+  
+  
+  .login-input2 {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #686868;
+  
+    display: block;
+    width: 78%;
+    background: #e6e6e6;
+    height: 62px;
+    margin-left: 20px;
+    border-radius: 8px;
+    padding: 0 30px 0 10px;
+    height: 40px;
+  }
+  
+
+
+/* Botão */
+.login-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.login-btn-style {
+  font-family: Nunito, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  text-transform: uppercase;
+
+  width: 30%;
+  height: 46px;
+  border-radius: 3px;
+  background:#985b0e;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  margin-top: 80px;
+  margin-bottom: 68px;
+
+  border: none;
+}
+
+.cadastro-link {
+    margin-top: -35px;
+    margin-left: 280px;
+    font-size: 20px;
+    font-family: Nunito, sans-serif;
+    color: white;
+}
+
+.senha-link {
+  margin-top: -35px;
+  margin-left: 38px;
+  font-size: 20px;
+  font-family: Nunito, sans-serif;
+  color: white;
+}
+
+/* Hover */
+.login-btn-style:hover {
+  background: #b39e08;
+}
+
+.cadastro-link:hover {
+	text-decoration: none;
+  color: #f7f200;
+}
+
+.senha-link:hover {
+	text-decoration: none;
+  color: #f7f200;
+}
+

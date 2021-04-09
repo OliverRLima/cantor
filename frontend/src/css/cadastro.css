@@ -1,0 +1,238 @@
+/*Divs Formulário*/
+
+.img-logo-cadastro{
+  margin: 0 0 31em 0;
+}
+
+.register-all {
+  width: 100%;  
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-image: url('../img/imgCadastro.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.alerta {
+  font-size: small;
+  color: red;
+  width: 400px;
+  margin-left: 1.3em;
+}
+
+.register-secundary{
+    width: 710px;
+    height: 830px;
+    margin-left:auto;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #00000085;
+  }
+  
+  /* Header */
+
+  .register-form1 {
+    font-family:  Nunito, sans-serif;
+    font-size: 25px;
+    color: #ffffff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 32px;
+  
+    width: 100%;
+    display: block;
+  }
+  
+  .register-form2 {
+      font-family:  Nunito, sans-serif;
+      font-size: 20px;
+      color: #ffffff;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 32px;
+    
+      width: 100%;
+      display: block;
+    }
+
+  .register-linha {
+    background-color: #ffc800;
+    width: 78%;
+    }
+    
+    /* Corpo */
+    
+    .info {
+        color: white;
+        font-size: 20px;
+        margin-left: 20px;
+        font-family: Nunito, sans-serif;
+    }
+
+.register-div1 {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-top: 30px
+}
+
+
+
+.register-input1 {
+  font-size: 18px;
+  line-height: 1.2;
+  color: #686868;
+
+  display: block;
+  width: 78%;
+  background: #e6e6e6;
+  height: 62px;
+  margin-left: 20px;
+  border-radius: 8px;
+  padding: 0 30px 0 10px;
+  height: 40px;
+}
+
+
+.register-div2 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-top: 30px
+  }
+  
+  
+  
+  .register-input2 {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #686868;
+  
+    display: block;
+    width: 78%;
+    background: #e6e6e6;
+    height: 62px;
+    margin-left: 20px;
+    border-radius: 8px;
+    padding: 0 30px 0 10px;
+    height: 40px;
+  }
+  
+  .register-div3 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-top: 30px
+  }
+  
+  
+  
+  .register-input3 {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #686868;
+  
+    display: block;
+    width: 35%;
+    background: #e6e6e6;
+    height: 62px;
+    margin-left: 20px;
+    border-radius: 8px;
+    padding: 0 30px 0 10px;
+    height: 40px;
+  }
+
+  .register-div4 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-top: 30px
+  }
+  
+  
+  
+  .register-input4 {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #686868;
+  
+    display: block;
+    width: 35%;
+    background: #e6e6e6;
+    height: 62px;
+    margin-left: 20px;
+    border-radius: 8px;
+    padding: 0 30px 0 10px;
+    height: 40px;
+    margin-bottom: 0px;
+  }
+  
+
+/* Botão */
+.register-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.register-btn-style {
+  font-family: Nunito, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  text-transform: uppercase;
+
+  width: 30%;
+  height: 46px;
+  border-radius: 3px;
+  background:#985b0e;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  margin-top: 0;
+
+  border: none;
+}
+
+.login-link {
+    margin-top: -35px;
+    margin-left: 38px;
+    font-size: 20px;
+    font-family: Nunito, sans-serif;
+    color:white;
+}
+
+/* Hover */
+.register-btn-style:hover {
+  background: #b39e08;
+}
+
+.login-link:hover {
+	text-decoration: none;
+  color: #f7f200;
+}
+
