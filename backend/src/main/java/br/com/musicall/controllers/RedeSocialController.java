@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/sociais")
-@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+//@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class RedeSocialController {
 
     @Autowired

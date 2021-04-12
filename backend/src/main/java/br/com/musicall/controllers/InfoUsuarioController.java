@@ -13,7 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/infos")
-@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+//@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class InfoUsuarioController {
     PilhaObj<InfoUsuario> infos = new PilhaObj<InfoUsuario>(50);
 

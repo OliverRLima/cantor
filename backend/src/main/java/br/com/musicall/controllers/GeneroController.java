@@ -13,7 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/generos")
-@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+//@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class GeneroController {
 
     @Autowired

@@ -33,7 +33,8 @@ import java.util.Scanner;
 
 @RestController
 @RequestMapping("/publicacoes")
-@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+//@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class PublicacaoController implements Subject {
 
     @Autowired

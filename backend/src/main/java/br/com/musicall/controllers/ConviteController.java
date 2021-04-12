@@ -19,7 +19,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/home")
-@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+//@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class ConviteController {
 
     FilaObj<Convite> convites = new FilaObj<Convite>(50);

@@ -27,7 +27,8 @@ import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+//@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UsuarioController implements Observer {
 
     @Autowired
