@@ -200,12 +200,14 @@ public class UsuarioController implements Observer {
         }
     }
 
-    @GetMapping("/verificar")
-    public ResponseEntity verificarCadastro(@RequestBody Usuario usuario) {
-        Usuario usuarioCadastrado = usuarioRepository.pesquisarPorEmail(usuario.getEmail());
+    @GetMapping("/verificar/{email}")
+    public ResponseEntity verificarCadastro(@PathVariable String email) {
+        Usuario usuarioCadastrado = usuarioRepository.pesquisarPorEmail(email);
         if(usuarioCadastrado != null){
-            return ResponseEntity.badRequest().body(usuarioCadastrado.getEmail());
+            System.out.println("email existe");
+            return ResponseEntity.badRequest().build();
         }
+        System.out.println("email NÃO existe");
         return ResponseEntity.ok().build();
     }
 
