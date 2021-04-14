@@ -200,6 +200,15 @@ public class UsuarioController implements Observer {
         }
     }
 
+    @GetMapping("/verificar")
+    public ResponseEntity verificarCadastro(@RequestBody Usuario usuario) {
+        Usuario usuarioCadastrado = usuarioRepository.pesquisarPorEmail(usuario.getEmail());
+        if(usuarioCadastrado != null){
+            return ResponseEntity.badRequest().body(usuarioCadastrado.getEmail());
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/sociais")
     public ResponseEntity getRedesSociais() {
         if (!usuarios.isEmpty()) {

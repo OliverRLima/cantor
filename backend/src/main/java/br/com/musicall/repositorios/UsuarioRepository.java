@@ -16,6 +16,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("select u from Usuario u where u.email like ?1 and u.senha like ?2")
     Usuario pesquisarPorEmailESenha(String email, String senha);
 
+    @Query("select u from Usuario u where u.email like ?1")
+    Usuario pesquisarPorEmail(String email);
+
     @Query("select u from Usuario u where u.notificado = true")
     List<Usuario> pesquisarPorNotificado();
 
