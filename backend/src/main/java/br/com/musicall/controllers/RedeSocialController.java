@@ -82,4 +82,7 @@ public class RedeSocialController {
         }
     }
 
+    public void deletarRegistroDeRedeSocial(Integer idSocial) {
+        repository.deletarPeloId(idSocial);
+    }
 }

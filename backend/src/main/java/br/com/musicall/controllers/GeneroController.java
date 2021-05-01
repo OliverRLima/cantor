@@ -37,6 +37,9 @@ public class GeneroController {
             return generos;
         }
     }
+    public void deletarRegistroDeGenero(Integer idUsuario){
+        repository.deletarPeloIdUsuario(idUsuario);
+    }
 
     public List<GeneroSimples> listarGenero(Integer idUsuario){
         Integer id = usuarioController.recuperarUsuario();

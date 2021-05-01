@@ -30,7 +30,9 @@ public class InstrumentoController {
                     instrumento.getTipoInstrumento(),id);
         }
     }
-
+    public void deletarRegistroDeInstrumento(Integer idUsuario){
+        repository.deletarPeloIdUsuario(idUsuario);
+    }
     public List<Instrumento> listaInstrumentos(Integer idUsuario){
         Integer id = usuarioController.recuperarUsuario();
         List<Instrumento> instrumentos = repository.selecionarPeloIdUsuario(id);

@@ -62,6 +62,9 @@ public class UsuarioController implements Observer {
     private RegMedalhaController regMedalhaController;
 
     @Autowired
+    private ConviteController conviteController;
+
+    @Autowired
     private RecebeRepository recebeRepository;
 
     private List<Usuario> usuarios = new ArrayList<>();
@@ -162,12 +165,29 @@ public class UsuarioController implements Observer {
     @DeleteMapping
     public ResponseEntity deletar() {
         if (!usuarios.isEmpty()) {
-            Integer id = usuarios.get(0).getIdUsuario();
+            Usuario usuario = usuarios.get(0);
+            deletarDadosDoUsuario(usuario);
             usuarios.clear();
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    private void deletarDadosDoUsuario(Usuario usuario) {
+        Integer idUsuario = usuario.getIdUsuario();
+        Integer idSocial = usuario.getRedeSocial().getIdRedeSocial();
+        Integer idInfo = usuario.getInfoUsuario().getIdInfoUsuario();
+
+        generoController.deletarRegistroDeGenero(idUsuario);
+        instrumentoController.deletarRegistroDeInstrumento(idUsuario);
+        publicacaoController.deletarRegistrosDePublicacao(idUsuario);
+        medalhasController.deletarRegistroDeMedalha(idUsuario);
+        regMedalhaController.deletarRegistroDeRegMedalha(idUsuario);
+        conviteController.deletarConvitesEnviadosERecebidos(idUsuario);
+        usuarioRepository.deleteById(idUsuario);
+        redeSocialController.deletarRegistroDeRedeSocial(idSocial);
+        infoUsuarioController.deletarRegistroDeInfoUsuario(idInfo);
     }
 
     @GetMapping
@@ -384,7 +404,7 @@ public class UsuarioController implements Observer {
         }
     }
 
-    @PutMapping("/mudar-senha")
+    @PutMapping("/alterar/senha")
     public ResponseEntity setSenha(@RequestBody Usuario usuario) {
         if (!usuarios.isEmpty()) {
             if (usuario.getSenha() != null) {

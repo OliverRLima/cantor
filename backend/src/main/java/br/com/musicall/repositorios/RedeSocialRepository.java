@@ -46,4 +46,9 @@ public interface RedeSocialRepository extends JpaRepository<RedeSocial, Integer>
 
     @Query("select rs from RedeSocial rs where rs.facebook = ?1 and rs.instagram = ?2 and rs.twitter = ?3")
     RedeSocial getRedeSocialSegundoParametros(String facebook, String instagram, String twitter);
+
+    @Transactional
+    @Modifying
+    @Query("delete from RedeSocial rs where rs.idRedeSocial = ?1")
+    void deletarPeloId(Integer idRedeSocial);
 }

@@ -48,5 +48,8 @@ public class RegMedalhaController {
         }
     }
 
+    public void deletarRegistroDeRegMedalha(Integer idUsuario) {
+        repository.deletarPeloIdUsuario(idUsuario);
+    }
 }
 

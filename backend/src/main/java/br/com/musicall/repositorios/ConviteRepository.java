@@ -34,4 +34,14 @@ public interface ConviteRepository extends JpaRepository<Convite, Integer> {
     @Modifying
     @Query("update Convite c set c.confirmado = 0 where c.idConvite = ?1")
     void alterarNegado(Integer idConvite);
+
+    @Transactional
+    @Modifying
+    @Query("delete from Convite c where c.idConvidado = ?1")
+    void deletarPeloIdConvidado(Integer idUsuario);
+
+    @Transactional
+    @Modifying
+    @Query("delete from Convite c where c.idConvidou = ?1")
+    void deletarPeloIdConvidou(Integer idUsuario);
 }

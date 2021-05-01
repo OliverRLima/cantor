@@ -338,4 +338,8 @@ public class ConviteController {
         }
     }
 
+    public void deletarConvitesEnviadosERecebidos(Integer idUsuario) {
+        repository.deletarPeloIdConvidado(idUsuario);
+        repository.deletarPeloIdConvidou(idUsuario);
+    }
 }

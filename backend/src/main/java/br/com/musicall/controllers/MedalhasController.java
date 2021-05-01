@@ -125,4 +125,7 @@ public class MedalhasController {
         }
     }
 
+    public void deletarRegistroDeMedalha(Integer idUsuario) {
+        repository.deletarPeloIdUsuario(idUsuario);
+    }
 }

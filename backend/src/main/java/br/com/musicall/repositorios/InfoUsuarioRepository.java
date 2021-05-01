@@ -49,4 +49,9 @@ public interface InfoUsuarioRepository extends JpaRepository<InfoUsuario,Integer
     @Modifying
     @Query(value = "insert into info_usuario (cidade, data_aniversario, descricao, estado) values (?1,?2,?3,?4);", nativeQuery = true)
     void adicionarInfoUsuario(String cidade, LocalDate dataAniversario, String descricao, String estado);
+
+    @Transactional
+    @Modifying
+    @Query("delete from InfoUsuario iu where iu.idInfoUsuario = ?1")
+    void deletarPeloId(Integer idInfoUsuario);
 }

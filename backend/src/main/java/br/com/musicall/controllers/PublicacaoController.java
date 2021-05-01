@@ -131,6 +131,7 @@ public class PublicacaoController implements Subject {
     public ResponseEntity curtir(@PathVariable Integer idPublicacao) {
         Integer idUsuario = usuarioController.recuperarUsuario();
         if (idUsuario == 0 || idUsuario == null) {
+
             return ResponseEntity.badRequest().build();
         }
         Publicacao publicacao = repository.getPorIdPublicacao(idPublicacao);
@@ -350,4 +351,7 @@ public class PublicacaoController implements Subject {
         return new ResponseEntity(Files.readAllBytes(xlxs.toPath()), headers, HttpStatus.OK);
     }
 
+    public void deletarRegistrosDePublicacao(Integer idUsuario) {
+        repository.deletarPeloIdUsuario(idUsuario);
+    }
 }

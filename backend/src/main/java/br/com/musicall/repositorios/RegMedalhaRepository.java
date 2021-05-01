@@ -51,4 +51,9 @@ public interface RegMedalhaRepository extends JpaRepository<RegistroMedalha, Int
     @Query("select rm from RegistroMedalha rm where rm.usuario.idUsuario = ?1")
     RegistroMedalha getPorIdUsuario(Integer idUsuario);
 
+    @Transactional
+    @Modifying
+    @Query("delete from RegistroMedalha rm where rm.usuario.idUsuario = ?1")
+    void deletarPeloIdUsuario(Integer idUsuario);
+
 }

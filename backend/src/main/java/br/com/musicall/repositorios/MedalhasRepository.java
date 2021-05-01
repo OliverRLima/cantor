@@ -44,4 +44,8 @@ public interface MedalhasRepository extends JpaRepository<Medalha, Integer> {
     @Query("select m from Medalha m where m.usuario.idUsuario = ?1")
     Medalha getPorIdUsuario(Integer idUsuario);
 
+    @Transactional
+    @Modifying
+    @Query("delete from Medalha m where m.usuario.idUsuario = ?1")
+    void deletarPeloIdUsuario(Integer idUsuario);
 }

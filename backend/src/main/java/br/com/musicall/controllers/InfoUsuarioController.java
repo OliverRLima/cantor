@@ -120,4 +120,7 @@ public class InfoUsuarioController {
         }
     }
 
+    public void deletarRegistroDeInfoUsuario(Integer idInfo) {
+        repository.deletarPeloId(idInfo);
+    }
 }
