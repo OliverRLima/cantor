@@ -1,5 +1,7 @@
 package br.com.musicall.api.dominios;
 
+import br.com.musicall.api.controllers.form.InfoForm;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -32,6 +34,14 @@ public class InfoUsuario {
         this.estado = estado;
         this.cidade = cidade;
     }
+
+    public InfoUsuario(InfoForm form) {
+        this.dataAniversario = form.getDataAniversario();
+        this.descricao = "Padrao";
+        this.estado = form.getEstado();
+        this.cidade = form.getCidade();
+    }
+
 
     public Integer getIdInfoUsuario() {
         return idInfoUsuario;

@@ -1,9 +1,14 @@
 package br.com.musicall.api.dominios;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
-public class Usuario {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,10 +17,10 @@ public class Usuario {
     @Column(nullable = false, length = 50)
     private String nome;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 75)
     private String email;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 256)
     private String senha;
 
     @Column(nullable = true)
@@ -38,6 +43,12 @@ public class Usuario {
         this.notificado = notificado;
         this.redeSocial = redeSocial;
         this.infoUsuario = infoUsuario;
+    }
+
+    public Usuario (String nome, String email, String senha){
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
     }
 
     public Integer getIdUsuario() {
@@ -96,4 +107,38 @@ public class Usuario {
         this.infoUsuario = infoUsuario;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

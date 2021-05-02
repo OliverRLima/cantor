@@ -1,5 +1,7 @@
 package br.com.musicall.api.dominios;
 
+import br.com.musicall.api.controllers.form.SocialForm;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +28,12 @@ public class RedeSocial {
         this.facebook = facebook;
         this.twitter = twitter;
         this.instagram = instagram;
+    }
+
+    public RedeSocial(SocialForm form) {
+        this.facebook = form.getFacebook();
+        this.twitter = form.getTelefone();
+        this.instagram = form.getInstagram();
     }
 
     public Integer getIdRedeSocial() {

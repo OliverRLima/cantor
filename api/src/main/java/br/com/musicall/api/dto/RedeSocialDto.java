@@ -2,18 +2,18 @@ package br.com.musicall.api.dto;
 
 import br.com.musicall.api.dominios.RedeSocial;
 
-public class RedeSocialDto extends Dto{
+public class RedeSocialDto {
 
     private Integer idRedeSocial;
     private String facebook;
-    private String twitter;
     private String instagram;
+    private String telefone;
 
     public RedeSocialDto(RedeSocial redeSocial) {
         this.idRedeSocial = redeSocial.getIdRedeSocial();
         this.facebook = redeSocial.getFacebook();
-        this.twitter = redeSocial.getTwitter();
         this.instagram = redeSocial.getInstagram();
+        this.telefone = redeSocial.getTwitter();
     }
 
     public Integer getIdRedeSocial() {
@@ -24,11 +24,11 @@ public class RedeSocialDto extends Dto{
         return facebook;
     }
 
-    public String getTwitter() {
-        return twitter;
-    }
-
     public String getInstagram() {
         return instagram;
+    }
+
+    public String getTelefone() {
+        return telefone;
     }
 }

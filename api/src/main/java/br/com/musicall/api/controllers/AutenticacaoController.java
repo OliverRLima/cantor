@@ -1,32 +1,57 @@
 package br.com.musicall.api.controllers;
 
-import br.com.musicall.api.aplicacao.AutenticacaoFunction;
-import br.com.musicall.api.aplicacao.MedalhaFunction;
-import br.com.musicall.api.aplicacao.RegistroMedalhaFunction;
+import br.com.musicall.api.config.security.TokenService;
+import br.com.musicall.api.controllers.form.LoginForm;
 import br.com.musicall.api.dominios.Usuario;
-import br.com.musicall.api.visoes.UsuarioAutenticado;
+import br.com.musicall.api.dto.TokenDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/autenticacao")
+@RequestMapping("/auth")
+@Profile(value = {"prod", "test"})
 public class AutenticacaoController {
 
     @Autowired
-    private AutenticacaoFunction autenticacaoFunction;
+    private AuthenticationManager authManager;
 
-    @PostMapping("/login")
-    public ResponseEntity realizarLoginDeUsuario(@RequestBody Usuario usuario){
-        UsuarioAutenticado resposta = autenticacaoFunction.logar(usuario);
+    @Autowired
+    private TokenService tokenService;
 
-        switch (resposta.getEstado()) {
-            case USUARIO_COMPLETO: return ResponseEntity.ok(resposta);
-            case USUARIO_INCOMPLETO: return ResponseEntity.badRequest().body(resposta);
-            case USUARIO_SENHA_INCORRETO: return ResponseEntity.notFound().build();
-            default: return ResponseEntity.status(406).build();
+    @PostMapping
+    public ResponseEntity autenticar(@RequestBody @Valid LoginForm form){
+        UsernamePasswordAuthenticationToken dadosLogin = form.converter();
+
+        try {
+            return verificarResposta(authManager.authenticate(dadosLogin));
+        } catch (AuthenticationException e){
+            return ResponseEntity.notFound().build();
         }
-
     }
 
+    private ResponseEntity verificarResposta(Authentication authentication) {
+        Usuario logado = (Usuario) authentication.getPrincipal();
+
+        if (logado.getRedeSocial() == null || logado.getInfoUsuario() == null){
+            return ResponseEntity.badRequest().build();
+        }
+
+        String token = tokenService.gerarToken(authentication);
+
+        return ResponseEntity.ok(new TokenDto(token, "Bearer",
+                logado.getIdUsuario(),
+                logado.getInfoUsuario().getIdInfoUsuario(),
+                logado.getRedeSocial().getIdRedeSocial()));
+    }
 }

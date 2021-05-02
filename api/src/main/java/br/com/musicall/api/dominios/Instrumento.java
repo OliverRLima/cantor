@@ -1,7 +1,9 @@
+
 package br.com.musicall.api.dominios;
 
+import br.com.musicall.api.controllers.form.InstrumentoForm;
+
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 public class Instrumento {
@@ -30,6 +32,13 @@ public class Instrumento {
         this.tipoInstrumento = tipoInstrumento;
         this.instrumento = instrumento;
         this.nvDominio = nvDominio;
+        this.usuario = usuario;
+    }
+
+    public Instrumento(InstrumentoForm form, Usuario usuario) {
+        this.tipoInstrumento = "corda";
+        this.instrumento = form.getInstrumento();
+        this.nvDominio = "medio";
         this.usuario = usuario;
     }
 

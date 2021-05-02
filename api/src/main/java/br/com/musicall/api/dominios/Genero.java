@@ -1,7 +1,8 @@
 package br.com.musicall.api.dominios;
 
+import br.com.musicall.api.controllers.form.GeneroForm;
+
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 public class Genero {
@@ -26,6 +27,12 @@ public class Genero {
         this.idGenero = idGenero;
         this.preferencia = preferencia;
         this.generoMusical = generoMusical;
+        this.usuario = usuario;
+    }
+
+    public Genero(GeneroForm form, Usuario usuario) {
+        this.preferencia = "alta";
+        this.generoMusical = form.getGeneroMusical();
         this.usuario = usuario;
     }
 
