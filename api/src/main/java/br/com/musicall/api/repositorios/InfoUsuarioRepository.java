@@ -7,9 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface InfoUsuarioRepository extends JpaRepository<InfoUsuario,Integer> {
+
+    List<InfoUsuario> findByEstado(String estado);
+
+    List<InfoUsuario> findByCidade(String cidade);
 
     @Transactional
     @Modifying

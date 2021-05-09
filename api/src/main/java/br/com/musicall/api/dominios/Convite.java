@@ -83,4 +83,6 @@ public class Convite {
                 ", confirmado=" + confirmado +
                 '}';
     }
+
+
 }

@@ -2,6 +2,7 @@ package br.com.musicall.api.aplicacao;
 
 import br.com.musicall.api.controllers.form.*;
 import br.com.musicall.api.dominios.*;
+import br.com.musicall.api.dto.DadosDto;
 import br.com.musicall.api.repositorios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,31 +34,56 @@ public class CadastrarService {
 
         Optional<Usuario> usuario = usuarioRepository.findByEmail(form.getEmail());
         if (usuario.isPresent()){
-            return new Usuario();
+            return null;
         }
 
         return usuarioRepository.save(new Usuario(form.getNome(), form.getEmail(), senha));
     }
 
-    public InfoUsuario cadastrarInfo(InfoForm form, Integer idUsuario) {
-        InfoUsuario infoUsuario = infoUsuarioRepository.save(new InfoUsuario(form));
-        usuarioRepository.updateInfoUsuario(infoUsuario.getIdInfoUsuario(), idUsuario);
-        return infoUsuario;
+    public DadosDto cadastrarDados(DadosForm form, Integer idUsuario){
+        Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
+
+        if (!usuario.isPresent()){
+            return null;
+        }
+
+        InfoUsuario info = infoUsuarioRepository.save(getInfo(form));
+        RedeSocial social = redeSocialRepository.save(getSocial(form));
+        Instrumento instrumento = instrumentoRepository.save(getInstrumento(form, usuario.get()));
+        Genero genero = generoRepository.save(getGenero(form, usuario.get()));
+
+        usuarioRepository.updateInfoUsuario(info.getIdInfoUsuario(), usuario.get().getIdUsuario());
+        usuarioRepository.updateRedeSocial(social.getIdRedeSocial(), usuario.get().getIdUsuario());
+
+        return new DadosDto(info.getDataAniversario(), info.getEstado(), info.getCidade(),
+                social.getFacebook(), social.getInstagram(), social.getTwitter(), instrumento.getInstrumento(), genero.getGeneroMusical());
     }
 
-    public RedeSocial cadastrarSocial(SocialForm form, Integer idUsuario) {
-        RedeSocial social = redeSocialRepository.save(new RedeSocial(form));
-        usuarioRepository.updateRedeSocial(social.getIdRedeSocial(), idUsuario);
-        return social;
+    private InfoUsuario getInfo(DadosForm form) {
+        InfoForm infoForm = new InfoForm();
+        infoForm.setDataAniversario(form.getDataAniversario());
+        infoForm.setEstado(form.getEstado());
+        infoForm.setCidade(form.getCidade());
+        return new InfoUsuario(infoForm);
     }
 
-    public Instrumento cadastrarInstrumento(InstrumentoForm form, Integer idUsuario) {
-        Usuario usuario = usuarioRepository.findById(idUsuario).get();
-        return instrumentoRepository.save(new Instrumento(form, usuario));
+    private RedeSocial getSocial(DadosForm form) {
+        SocialForm socialForm = new SocialForm();
+        socialForm.setFacebook(form.getFacebook());
+        socialForm.setInstagram(form.getInstagram());
+        socialForm.setTelefone(form.getTelefone());
+        return new RedeSocial(socialForm);
     }
 
-    public Genero cadastrarGenero(GeneroForm form, Integer idUsuario) {
-        Usuario usuario = usuarioRepository.findById(idUsuario).get();
-        return generoRepository.save(new Genero(form, usuario));
+    private Instrumento getInstrumento(DadosForm form, Usuario usuario){
+        InstrumentoForm instrumentoForm = new InstrumentoForm();
+        instrumentoForm.setInstrumento(form.getInstrumento());
+        return new Instrumento(instrumentoForm, usuario);
+    }
+
+    private Genero getGenero(DadosForm form, Usuario usuario){
+        GeneroForm generoForm = new GeneroForm();
+        generoForm.setGeneroMusical(form.getGeneroMusical());
+        return new Genero(generoForm, usuario);
     }
 }

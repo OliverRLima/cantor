@@ -1,5 +1,6 @@
 package br.com.musicall.api.controllers;
 
+import br.com.musicall.api.aplicacao.MedalhaService;
 import br.com.musicall.api.config.security.TokenService;
 import br.com.musicall.api.controllers.form.LoginForm;
 import br.com.musicall.api.dominios.Usuario;
@@ -29,6 +30,9 @@ public class AutenticacaoController {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private MedalhaService medalhaService;
+
     @PostMapping
     public ResponseEntity autenticar(@RequestBody @Valid LoginForm form){
         UsernamePasswordAuthenticationToken dadosLogin = form.converter();
@@ -46,9 +50,9 @@ public class AutenticacaoController {
         if (logado.getRedeSocial() == null || logado.getInfoUsuario() == null){
             return ResponseEntity.badRequest().build();
         }
-
         String token = tokenService.gerarToken(authentication);
 
+        medalhaService.atualizarMedalhas(logado.getIdUsuario());
         return ResponseEntity.ok(new TokenDto(token, "Bearer",
                 logado.getIdUsuario(),
                 logado.getInfoUsuario().getIdInfoUsuario(),

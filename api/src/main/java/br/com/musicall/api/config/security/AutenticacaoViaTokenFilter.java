@@ -35,9 +35,9 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         }
 
-    private void autenticarCliente(String token) {
+    private void autenticarCliente(String token) throws ServletException {
         Integer idUsuario = tokenService.getIdUsuario(token);
-        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(() -> new ServletException());
         UsernamePasswordAuthenticationToken authentication =
                 new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);

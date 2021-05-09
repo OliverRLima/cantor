@@ -1,6 +1,7 @@
 package br.com.musicall.api.controllers;
 
 import br.com.musicall.api.aplicacao.CadastrarService;
+import br.com.musicall.api.aplicacao.MedalhaService;
 import br.com.musicall.api.controllers.form.*;
 import br.com.musicall.api.dominios.*;
 import br.com.musicall.api.dto.*;
@@ -19,46 +20,28 @@ public class CadastrarController {
     @Autowired
     private CadastrarService cadastrarService;
 
+    @Autowired
+    private MedalhaService medalhaService;
+
     @PostMapping
     public ResponseEntity cadastrar(@RequestBody @Valid CadastroForm form){
         Usuario usuario = cadastrarService.cadastrarUsuario(form);
 
-        if (usuario.getIdUsuario() == null){
+        if (usuario == null){
             return ResponseEntity.badRequest().build();
         }
+        medalhaService.criarMedalha(usuario.getIdUsuario());
         return ResponseEntity.created(null).body(new UsuarioDto(usuario));
     }
 
-    @PostMapping("/info/{idUsuario}")
-    public ResponseEntity cadastrarInfo(@RequestBody @Valid InfoForm form, @PathVariable Integer idUsuario, UriComponentsBuilder uriBuilder){
-        InfoUsuario infoUsuario =  cadastrarService.cadastrarInfo(form, idUsuario);
+    @PostMapping("/dados/{idUsuario}")
+    public ResponseEntity cadastrarDados(@RequestBody @Valid DadosForm form, @PathVariable Integer idUsuario, UriComponentsBuilder uriBuilder){
+        DadosDto dadosDto = cadastrarService.cadastrarDados(form, idUsuario);
+        if (dadosDto == null){
+            return ResponseEntity.badRequest().build();
+        }
 
         URI uri = uriBuilder.path("/dados/{idUsuario}").buildAndExpand(idUsuario).toUri();
-        return ResponseEntity.created(uri).body(new InfoUsuarioDto(infoUsuario));
+        return ResponseEntity.created(uri).body(dadosDto);
     }
-
-    @PostMapping("/social/{idUsuario}")
-    public ResponseEntity cadastrarSocial(@RequestBody @Valid SocialForm form, @PathVariable Integer idUsuario, UriComponentsBuilder uriBuilder){
-        RedeSocial redeSocial =  cadastrarService.cadastrarSocial(form, idUsuario);
-
-        URI uri = uriBuilder.path("/dados/{idUsuario}").buildAndExpand(idUsuario).toUri();
-        return ResponseEntity.created(uri).body(new RedeSocialDto(redeSocial));
-    }
-
-    @PostMapping("/instrumento/{idUsuario}")
-    public ResponseEntity cadastrarInstrumento(@RequestBody @Valid InstrumentoForm form, @PathVariable Integer idUsuario, UriComponentsBuilder uriBuilder){
-        Instrumento instrumento =  cadastrarService.cadastrarInstrumento(form, idUsuario);
-
-        URI uri = uriBuilder.path("/dados/{idUsuario}").buildAndExpand(idUsuario).toUri();
-        return ResponseEntity.created(uri).body(new InstrumentoDto(instrumento));
-    }
-
-    @PostMapping("/genero/{idUsuario}")
-    public ResponseEntity cadastrarGenero(@RequestBody @Valid GeneroForm form, @PathVariable Integer idUsuario, UriComponentsBuilder uriBuilder){
-        Genero genero =  cadastrarService.cadastrarGenero(form, idUsuario);
-
-        URI uri = uriBuilder.path("/dados/{idUsuario}").buildAndExpand(idUsuario).toUri();
-        return ResponseEntity.created(uri).body(new GeneroDto(genero));
-    }
-
 }

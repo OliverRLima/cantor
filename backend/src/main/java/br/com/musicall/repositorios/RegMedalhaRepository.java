@@ -30,11 +30,6 @@ public interface RegMedalhaRepository extends JpaRepository<RegistroMedalha, Int
 
     @Transactional
     @Modifying
-    @Query("update RegistroMedalha rm set rm.regNumCurtidas = ?1 where rm.usuario.idUsuario = ?2")
-    void alterarNumCurtidas(Integer regNumCurtidas, Integer idUsuario);
-
-    @Transactional
-    @Modifying
     @Query("update RegistroMedalha rm set rm.regNumPesquisas = ?1 where rm.usuario.idUsuario = ?2")
     void alterarNumPesquisas(Integer regNumPesquisas, Integer idUsuario);
 
@@ -55,5 +50,10 @@ public interface RegMedalhaRepository extends JpaRepository<RegistroMedalha, Int
     @Modifying
     @Query("delete from RegistroMedalha rm where rm.usuario.idUsuario = ?1")
     void deletarPeloIdUsuario(Integer idUsuario);
+
+    @Transactional
+    @Modifying
+    @Query("update RegistroMedalha rm set rm.regNumCurtidas = ?1 where rm.usuario.idUsuario = ?2")
+    void alterarNumCurtidas(Integer regNumCurtidas, Integer idUsuario);
 
 }

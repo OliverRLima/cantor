@@ -5,6 +5,7 @@ import br.com.musicall.api.controllers.form.AlterarSenhaForm;
 import br.com.musicall.api.controllers.form.DadosForm;
 import br.com.musicall.api.dto.DadosDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,16 +29,27 @@ public class InfoDadosController {
     @Cacheable(value = "dadosUsuario")
     public ResponseEntity pegardados(@PathVariable Integer idUsuario){
         DadosDto dadosDto = infoDadosService.pegarDados(idUsuario);
-        if (dadosDto.getCidade() == null){
+        if (dadosDto == null){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(dadosDto);
     }
 
     @PutMapping("/alterar/{idUsuario}")
+    @CacheEvict(value = "dadosUsuario", allEntries = true)
     public ResponseEntity alterarDados(@RequestBody @Valid DadosForm dados, @PathVariable Integer idUsuario){
         Boolean alterarDados = infoDadosService.alterarDados(dados, idUsuario);
         if (!alterarDados){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/usuario/{idUsuario}")
+    @CacheEvict(value = "dadosUsuario", allEntries = true)
+    public ResponseEntity deletarConta(@PathVariable Integer idUsuario){
+        Boolean deletado = infoDadosService.deletarConta(idUsuario);
+        if (!deletado){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().build();
