@@ -63,7 +63,7 @@ public class InfoDadosService {
             return null;
         }
 
-        return new DadosDto(infoUsuario.getDataAniversario(), infoUsuario.getEstado(), infoUsuario.getCidade(),
+        return new DadosDto(usuario.get().getNome(), infoUsuario.getDataAniversario(), infoUsuario.getEstado(), infoUsuario.getCidade(),
                 social.getFacebook(), social.getInstagram(), social.getTwitter(), instrumento.getInstrumento(), genero.getGeneroMusical());
     }
 

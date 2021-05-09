@@ -27,6 +27,7 @@ public class PublicacaoDto {
         this.texto = publicacao.getTexto();
     }
 
+
     private Integer getAnosIdade(Publicacao publicacao) {
         Period period = Period.between(publicacao.getUsuario().getInfoUsuario().getDataAniversario(), LocalDate.now());
         Integer anos = period.getYears();

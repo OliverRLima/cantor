@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class DadosDto {
 
+    private String nome;
     private LocalDate dataAniversario;
     private String estado;
     private String cidade;
@@ -12,6 +13,18 @@ public class DadosDto {
     private String telefone;
     private String instrumento;
     private String generoMusical;
+
+    public DadosDto(String nome, LocalDate dataAniversario, String estado, String cidade, String facebook, String instagram, String telefone, String instrumento, String generoMusical) {
+        this.nome = nome;
+        this.dataAniversario = dataAniversario;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.facebook = facebook;
+        this.instagram = instagram;
+        this.telefone = telefone;
+        this.instrumento = instrumento;
+        this.generoMusical = generoMusical;
+    }
 
     public DadosDto(LocalDate dataAniversario, String estado, String cidade, String facebook, String instagram, String telefone, String instrumento, String generoMusical) {
         this.dataAniversario = dataAniversario;
@@ -25,6 +38,10 @@ public class DadosDto {
     }
 
     public DadosDto() {
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public LocalDate getDataAniversario() {
