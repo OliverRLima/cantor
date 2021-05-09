@@ -55,7 +55,10 @@ public class PublicacaoService {
         return true;
     }
 
-    public List<PublicacaoDto> pesquisarPublicacoes(String chave, String valor) {
+    public List<PublicacaoDto> pesquisarPublicacoes(Integer idUsuario, String chave, String valor) {
+
+        Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
+        if (usuario.isEmpty()) return null;
 
         switch (chave){
             case "usuario":

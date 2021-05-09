@@ -57,10 +57,11 @@ public class PublicacaoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/pesquisar/{chave}/{valor}")
-    public ResponseEntity pesquisarPublicacoes(@PathVariable String chave, @PathVariable String valor){
-        List<PublicacaoDto> publicacoes = publicacaoService.pesquisarPublicacoes(chave, valor);
+    @GetMapping("/pesquisar/{idUsuario}/{chave}/{valor}")
+    public ResponseEntity pesquisarPublicacoes(@PathVariable Integer idUsuario, @PathVariable String chave, @PathVariable String valor){
+        List<PublicacaoDto> publicacoes = publicacaoService.pesquisarPublicacoes(idUsuario, chave, valor);
         if (publicacoes == null) return ResponseEntity.badRequest().build();
+        medalhaService.alterarMedalha("pesquisas", idUsuario);
         return ResponseEntity.ok(publicacoes);
     }
 

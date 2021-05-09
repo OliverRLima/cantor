@@ -41,6 +41,7 @@ public class CadastrarController {
             return ResponseEntity.badRequest().build();
         }
 
+        medalhaService.alterarMedalha("infos", idUsuario);
         URI uri = uriBuilder.path("/dados/{idUsuario}").buildAndExpand(idUsuario).toUri();
         return ResponseEntity.created(uri).body(dadosDto);
     }
