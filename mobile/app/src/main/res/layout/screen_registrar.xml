@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/black"
+    tools:context=".ScreenRegistrar">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logo"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastre-se e encontre \n a sintonia perfeita"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+/>
+
+    <EditText
+        android:id="@+id/et_nome"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:hint="Nome"
+
+        android:textColorHint="#5EFFFFFF"
+
+        />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+
+        android:textColorHint="#5EFFFFFF"
+
+        />
+
+    <EditText
+        android:id="@+id/et_senha"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:hint="Senha"
+        android:inputType="textPassword"
+
+        android:textColorHint="#5EFFFFFF"
+
+        />
+
+    <EditText
+        android:id="@+id/et_confirmar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:hint="Confirmar senha"
+        android:inputType="textPassword"
+
+        android:textColorHint="#5EFFFFFF"
+
+        />
+
+    <Button
+        android:id="@+id/bt_registrar"
+        android:layout_width="229dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_registrar"
+        android:text="Registrar-se"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:onClick="registrar"
+
+        />
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="144dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_login"
+        android:text="Já tenho conta :D"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:onClick="entrar"
+        />
+
+
+</LinearLayout>

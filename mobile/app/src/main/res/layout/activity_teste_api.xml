@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TesteApi">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="logar"
+        android:id="@+id/bt_logar"
+        android:onClick="logar"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cad user"
+        android:id="@+id/bt_cadastrar"
+        app:layout_constraintLeft_toRightOf="@+id/bt_logar"
+        android:onClick="cadastrar"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cad info"
+        android:id="@+id/bt_cadastrarInfo"
+
+        app:layout_constraintTop_toBottomOf="@+id/bt_logar"
+        android:onClick="cadastrarInfo"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cad Genero"
+        android:id="@+id/bt_cadastrarGenero"
+        app:layout_constraintLeft_toRightOf="@+id/bt_cadastrarInfo"
+        app:layout_constraintTop_toBottomOf="@+id/bt_logar"
+        android:onClick="cadastrarGenero"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cad Sociais"
+        android:id="@+id/bt_cadastrarSociais"
+        app:layout_constraintLeft_toRightOf="@+id/bt_cadastrarGenero"
+        app:layout_constraintTop_toBottomOf="@+id/bt_logar"
+        android:onClick="cadastrarSociais"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cad Instru"
+        android:id="@+id/bt_cadastrarInstrumento"
+        app:layout_constraintLeft_toRightOf="@+id/bt_cadastrarSociais"
+        app:layout_constraintTop_toBottomOf="@+id/bt_logar"
+        android:onClick="cadastrarInstrumento"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="userComp"
+        android:id="@+id/bt_usuarioCompleto"
+        app:layout_constraintLeft_toRightOf="@+id/bt_cadastrar"
+        android:onClick="usuarioCompleto"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pegar publi"
+        android:id="@+id/bt_pegarPublicacoes"
+        app:layout_constraintLeft_toRightOf="@+id/bt_usuarioCompleto"
+        android:onClick="pegarPublicacoes"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pegar medalhas"
+        android:id="@+id/bt_pegarMedalhas"
+        app:layout_constraintTop_toBottomOf="@+id/bt_cadastrarInfo"
+        android:onClick="pegarMedalhas"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="conv Env"
+        android:id="@+id/bt_convitesEnviados"
+        app:layout_constraintTop_toBottomOf="@+id/bt_cadastrarInfo"
+        app:layout_constraintLeft_toRightOf="@+id/bt_pegarMedalhas"
+        android:onClick="pegarConvitesEnviados"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="conv Rec"
+        android:id="@+id/bt_convitesRecebidos"
+        app:layout_constraintTop_toBottomOf="@+id/bt_cadastrarInfo"
+        app:layout_constraintLeft_toRightOf="@+id/bt_convitesEnviados"
+        android:onClick="pegarConvitesRecebidos"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceitar Conv"
+        android:id="@+id/bt_aceitarConvite"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pegarMedalhas"
+        android:onClick="aceitarConvite"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="negar conv"
+        android:id="@+id/bt_negarConvite"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pegarMedalhas"
+        app:layout_constraintLeft_toRightOf="@+id/bt_aceitarConvite"
+        android:onClick="negarConvite"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Publicar"
+        android:id="@+id/bt_fazerPublicacao"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pegarMedalhas"
+        app:layout_constraintLeft_toRightOf="@+id/bt_negarConvite"
+        android:onClick="fazerPublicacao"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="del pub"
+        android:id="@+id/bt_deletarPublicacao"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pegarMedalhas"
+        app:layout_constraintLeft_toRightOf="@+id/bt_fazerPublicacao"
+        android:onClick="deletarPublicacao"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pqs gen"
+        android:id="@+id/bt_pesquisarGenero"
+        app:layout_constraintTop_toBottomOf="@+id/bt_aceitarConvite"
+        android:onClick="procurarPorGenero"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pqs inst"
+        android:id="@+id/bt_pesquisarInstrumento"
+        app:layout_constraintTop_toBottomOf="@+id/bt_aceitarConvite"
+        app:layout_constraintLeft_toRightOf="@+id/bt_pesquisarGenero"
+        android:onClick="procurarPorInstrumento"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pqs estado"
+        android:id="@+id/bt_pesquisarEstado"
+        app:layout_constraintTop_toBottomOf="@+id/bt_aceitarConvite"
+        app:layout_constraintLeft_toRightOf="@+id/bt_pesquisarInstrumento"
+        android:onClick="procurarPorEstado"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pqs cidade"
+        android:id="@+id/bt_pesquisarCidade"
+        app:layout_constraintTop_toBottomOf="@+id/bt_aceitarConvite"
+        app:layout_constraintLeft_toRightOf="@+id/bt_pesquisarEstado"
+        android:onClick="procurarPorCidade"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pegar infoComp"
+        android:id="@+id/bt_pegarInfoComp"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pesquisarGenero"
+        android:onClick="pegarInfoCompletaPorId"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pegar genero"
+        android:id="@+id/bt_pegarGenero"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pesquisarGenero"
+        app:layout_constraintLeft_toRightOf="@+id/bt_pegarInfoComp"
+        android:onClick="pegarGeneroPorId"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pegar Instru"
+        android:id="@+id/bt_pegarInstrumento"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pesquisarGenero"
+        app:layout_constraintLeft_toRightOf="@+id/bt_pesquisarEstado"
+        android:onClick="pegarInstrumentoPorId"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Att Info"
+        android:id="@+id/bt_atualizarInfo"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pegarInfoComp"
+        android:onClick="alterarTodasInfosPorId"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Att inst"
+        android:id="@+id/bt_atualizarInstrumento"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pegarInfoComp"
+        app:layout_constraintLeft_toRightOf="@+id/bt_atualizarInfo"
+        android:onClick="alterarInstrumentosPorId"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="att gen"
+        android:id="@+id/bt_atualizarGenero"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pegarInfoComp"
+        app:layout_constraintLeft_toRightOf="@+id/bt_atualizarInstrumento"
+        android:onClick="alterarGeneroPorId"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="att soc"
+        android:id="@+id/bt_atualizarSociais"
+        app:layout_constraintTop_toBottomOf="@+id/bt_pegarInfoComp"
+        app:layout_constraintLeft_toRightOf="@+id/bt_atualizarGenero"
+        android:onClick="alterarSociaisPorId"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_conteudo"
+        app:layout_constraintTop_toBottomOf="@+id/bt_atualizarInfo"
+        android:text="Conteudo aparece aqui"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_conteudo" >
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="300dp"
+            android:id="@+id/layout_listar"
+            android:orientation="vertical"
+            >
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,9 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+
+    Optional<Usuario> findByEmail(String email);
 
     @Query("select u from Usuario u where u.email like ?1 and u.senha like ?2")
     Usuario pesquisarPorEmailESenha(String email, String senha);

@@ -2,6 +2,7 @@ package br.com.musicall.api.aplicacao;
 
 import br.com.musicall.api.controllers.form.*;
 import br.com.musicall.api.dominios.*;
+import br.com.musicall.api.dto.DadosCadastroDto;
 import br.com.musicall.api.dto.DadosDto;
 import br.com.musicall.api.repositorios.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class CadastrarService {
         return usuarioRepository.save(new Usuario(form.getNome(), form.getEmail(), senha));
     }
 
-    public DadosDto cadastrarDados(DadosForm form, Integer idUsuario){
+    public DadosCadastroDto cadastrarDados(DadosForm form, Integer idUsuario){
         Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
 
         if (!usuario.isPresent()){
@@ -55,7 +56,7 @@ public class CadastrarService {
         usuarioRepository.updateInfoUsuario(info.getIdInfoUsuario(), usuario.get().getIdUsuario());
         usuarioRepository.updateRedeSocial(social.getIdRedeSocial(), usuario.get().getIdUsuario());
 
-        return new DadosDto(info.getDataAniversario(), info.getEstado(), info.getCidade(),
+        return new DadosCadastroDto(info.getDataAniversario(), info.getEstado(), info.getCidade(),
                 social.getFacebook(), social.getInstagram(), social.getTwitter(), instrumento.getInstrumento(), genero.getGeneroMusical());
     }
 

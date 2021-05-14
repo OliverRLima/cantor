@@ -36,13 +36,13 @@ public class CadastrarController {
 
     @PostMapping("/dados/{idUsuario}")
     public ResponseEntity cadastrarDados(@RequestBody @Valid DadosForm form, @PathVariable Integer idUsuario, UriComponentsBuilder uriBuilder){
-        DadosDto dadosDto = cadastrarService.cadastrarDados(form, idUsuario);
-        if (dadosDto == null){
+        DadosCadastroDto dadosCadastroDto = cadastrarService.cadastrarDados(form, idUsuario);
+        if (dadosCadastroDto == null){
             return ResponseEntity.badRequest().build();
         }
 
         medalhaService.alterarMedalha("infos", idUsuario);
         URI uri = uriBuilder.path("/dados/{idUsuario}").buildAndExpand(idUsuario).toUri();
-        return ResponseEntity.created(uri).body(dadosDto);
+        return ResponseEntity.created(uri).body(dadosCadastroDto);
     }
 }

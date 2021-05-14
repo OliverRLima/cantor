@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_feed"
+        android:icon="@drawable/ic_home"
+        android:title="Feed"/>
+
+    <item
+        android:id="@+id/ic_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Perfil"/>
+
+    <item
+        android:id="@+id/ic_invite"
+        android:icon="@drawable/ic_invite"
+        android:title="Convites"/>
+
+    <item
+        android:id="@+id/ic_medal"
+        android:icon="@drawable/ic_medals"
+        android:title="Medalhas"
+        />
+
+    <item
+        android:id="@+id/ic_settings"
+        android:icon="@drawable/ic_configuration"
+        android:title="Configurações"/>
+
+</menu>

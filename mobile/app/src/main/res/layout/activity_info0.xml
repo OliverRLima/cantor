@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".Info0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_titulo0"
+            android:text="Vamos enriquecer seu perfil? :D"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="100dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_infoData"
+            android:text="Informe sua data de nascimento *"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="60sp"
+            />
+
+        <EditText
+            android:id="@+id/et_data"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="dd/mm/aaaa"
+            android:textColor="@color/white"
+            android:textColorHint="#5EFFFFFF"
+            android:inputType="date"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_infoCidade"
+            android:text="Informe seu estado"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+
+            <Spinner
+                android:id="@+id/array_estado"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/array_estados" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="280dp"
+            android:layout_height="1dp"
+            android:background="@color/white"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_cidade"
+            android:text="Informe sua cidade *"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            />
+
+        <EditText
+            android:id="@+id/et_cidade"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:textColorHint="#5EFFFFFF"
+            android:hint="Cidade"
+            android:inputType="text"
+            />
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_continuar0"
+            android:background="@drawable/button_next"
+            android:text="Continuar"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:layout_marginTop="40sp"
+            android:onClick="irInfo1"/>
+
+
+    </LinearLayout>
+</RelativeLayout>

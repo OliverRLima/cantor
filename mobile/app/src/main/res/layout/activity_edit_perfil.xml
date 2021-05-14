@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:orientation="vertical"
+    tools:context=".EditProfileActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Edite aqui seu perfil ;)"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/et_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="Data de nascimento"
+        android:textColor="@color/white"
+        android:textColorHint="#5EFFFFFF"
+        android:inputType="date"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+
+    <Spinner
+        android:id="@+id/sp_spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/array_genero"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+
+        <Spinner
+            android:id="@+id/sp_spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/array_instrumento"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <Spinner
+            android:id="@+id/sp_spinner3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/array_estados"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <EditText
+        android:id="@+id/et_cidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Cidade"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:textColorHint="#5EFFFFFF"
+        />
+
+    <EditText
+        android:id="@+id/et_instagram"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Instagram"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:textColorHint="#5EFFFFFF"
+        />
+
+    <EditText
+        android:id="@+id/et_face"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Facebook"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:textColorHint="#5EFFFFFF"
+        />
+
+    <EditText
+        android:id="@+id/et_celular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Celular"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:textColorHint="#5EFFFFFF"
+        />
+
+
+    <Button
+        android:id="@+id/bt_salvar"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_registrar"
+        android:onClick="salvar"
+        android:text="Salvar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+
+        />
+
+    <Button
+        android:id="@+id/bt_cancelar"
+        android:layout_width="144dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_login"
+        android:onClick="cancelar"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+
+</LinearLayout>

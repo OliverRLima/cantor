@@ -15,7 +15,7 @@ public class Usuario {
     @Column(nullable = false, length = 50)
     private String email;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 256)
     private String senha;
 
     @Column(nullable = true)
@@ -38,6 +38,12 @@ public class Usuario {
         this.notificado = notificado;
         this.redeSocial = redeSocial;
         this.infoUsuario = infoUsuario;
+    }
+
+    public Usuario(String nome, String email, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
     }
 
     public Integer getIdUsuario() {

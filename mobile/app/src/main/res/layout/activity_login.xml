@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Login"
+    >
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="258dp"
+        android:layout_height="43dp"
+        android:src="@drawable/logo"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/login_frase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Entre no ritimo da música"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="280dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="#5EFFFFFF" />
+
+    <EditText
+        android:id="@+id/edt_senha"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/white"
+        android:hint="Senha"
+        android:textColor="@color/white"
+        android:inputType="textPassword"
+        android:textColorHint="#5EFFFFFF"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/selectLogin"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_registrar"
+        android:text="Entrar"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:onClick="entrar"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/frase_ajuda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Não tenho conta"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:onClick="registrar"
+        />
+
+</LinearLayout>

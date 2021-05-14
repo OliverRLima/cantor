@@ -21,7 +21,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-@Profile(value = {"prod", "test"})
 public class AutenticacaoController {
 
     @Autowired
@@ -53,9 +52,6 @@ public class AutenticacaoController {
         String token = tokenService.gerarToken(authentication);
 
         medalhaService.atualizarMedalhas(logado.getIdUsuario());
-        return ResponseEntity.ok(new TokenDto(token, "Bearer",
-                logado.getIdUsuario(),
-                logado.getInfoUsuario().getIdInfoUsuario(),
-                logado.getRedeSocial().getIdRedeSocial()));
+        return ResponseEntity.ok(new TokenDto(token, "Bearer", logado.getIdUsuario()));
     }
 }

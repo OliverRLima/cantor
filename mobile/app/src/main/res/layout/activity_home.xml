@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:gravity="center"
+    android:background="@android:color/black"
+    tools:context=".Home">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:background="@drawable/img_musicos" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:src="@drawable/logo"
+        android:layout_width="258dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="30dp"
+        tools:ignore="MissingConstraints"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Feito por músicos para músicos"
+        android:id="@+id/tv_frase"
+        android:layout_marginTop="40dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/selectLogin"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:text="Entrar"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_registrar"
+        tools:ignore="MissingConstraints"
+        android:onClick="login"
+        />
+
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:id="@+id/cadastrar"
+        android:text="Cadastre-se"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_next"
+        tools:ignore="MissingConstraints"
+        android:onClick="registrar"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saiba mais sobre o MusicAll"
+        android:id="@+id/frase_ajuda"
+        android:layout_marginTop="40dp"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:onClick="ajuda"
+        />
+
+
+</LinearLayout>

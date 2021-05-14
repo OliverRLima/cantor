@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".Info2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_titulo2"
+            android:text="Última etapa :)"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="100dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_infoRedes"
+            android:text="Informações para contato"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="60sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_instagram"
+            android:text="Instagram:"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="20sp"
+            />
+
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:id="@+id/et_instagram"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:textColorHint="#5EFFFFFF"
+            android:hint="Instagram"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_face"
+            android:text="Facebook:"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="20sp"
+            />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:id="@+id/et_facebook"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:textColorHint="#5EFFFFFF"
+            android:hint="Facebook"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_telefone"
+            android:text="Celular:"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="20sp"
+            />
+
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            app:mask="## ####-#####"
+            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_marginTop="7dp"
+            android:id="@+id/card"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="phone"
+            android:text="phone"
+            />
+
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_continuar0"
+            android:background="@drawable/button_registrar"
+            android:text="Finalizar"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:layout_marginTop="30sp"
+            android:onClick="finalizarCadastro"/>
+
+
+    </LinearLayout>
+</RelativeLayout>

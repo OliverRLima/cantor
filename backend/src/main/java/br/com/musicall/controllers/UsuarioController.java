@@ -16,12 +16,14 @@ import br.com.musicall.visoes.UsuarioAutenticado;
 import br.com.musicall.visoes.UsuarioCompleto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +32,8 @@ import java.util.regex.Pattern;
 //@CrossOrigin(origins = {"http://localhost:3000", "https://bandtec.github.io"})
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UsuarioController implements Observer {
+
+    private BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -99,8 +103,9 @@ public class UsuarioController implements Observer {
             System.out.println("não ta vazio");
             if (novoUsuario.getNome() != null && novoUsuario.getEmail() != null && novoUsuario.getSenha() != null) {
                 System.out.println("tudo certo");
-                usuarioRepository.save(novoUsuario);
-                Usuario nUsuario = usuarioRepository.pesquisarPorEmailESenha(novoUsuario.getEmail(), novoUsuario.getSenha());
+                String senha = bCrypt.encode(novoUsuario.getSenha());
+                usuarioRepository.save(new Usuario(novoUsuario.getNome(), novoUsuario.getEmail(), senha));
+                Usuario nUsuario = usuarioRepository.pesquisarPorEmailESenha(novoUsuario.getEmail(), senha);
                 medalhasController.criarMedalhas(nUsuario.getIdUsuario());
                 regMedalhaController.criarMedalhas(nUsuario.getIdUsuario());
                 return ResponseEntity.created(null).build();
@@ -130,22 +135,21 @@ public class UsuarioController implements Observer {
             return ResponseEntity.noContent().build();
         }
 
-        Usuario nUsuario = usuarioRepository.pesquisarPorEmailESenha(usuario.getEmail(), usuario.getSenha());
-
+        Optional<Usuario> nUsuario = usuarioRepository.findByEmail(usuario.getEmail());
         if (usuarios.isEmpty()) {
-            if (nUsuario != null) {
-                if (nUsuario.getEmail().equals(usuario.getEmail()) && nUsuario.getSenha().equals(usuario.getSenha())) {
+            if (nUsuario.isPresent()) {
+                if (bCrypt.matches(usuario.getSenha(), nUsuario.get().getSenha())) {
 
-                    usuarios.add(nUsuario);
-                    medalhasController.atualizaMedalhas(nUsuario.getIdUsuario());
+                    usuarios.add(nUsuario.get());
+                    medalhasController.atualizaMedalhas(nUsuario.get().getIdUsuario());
 
-                    if(nUsuario.getInfoUsuario() == null || nUsuario.getRedeSocial() == null){
-                        UsuarioAutenticado u = new UsuarioAutenticado(nUsuario.getIdUsuario(), "@musicall-Token",
+                    if(nUsuario.get().getInfoUsuario() == null || nUsuario.get().getRedeSocial() == null){
+                        UsuarioAutenticado u = new UsuarioAutenticado(nUsuario.get().getIdUsuario(), "@musicall-Token",
                                 null, null);
                         return ResponseEntity.ok(u);
                     } else {
-                        UsuarioAutenticado u = new UsuarioAutenticado(nUsuario.getIdUsuario(), "@musicall-Token",
-                                nUsuario.getInfoUsuario().getIdInfoUsuario(), nUsuario.getRedeSocial().getIdRedeSocial());
+                        UsuarioAutenticado u = new UsuarioAutenticado(nUsuario.get().getIdUsuario(), "@musicall-Token",
+                                nUsuario.get().getInfoUsuario().getIdInfoUsuario(), nUsuario.get().getRedeSocial().getIdRedeSocial());
                         return ResponseEntity.ok(u);
                     }
 
@@ -408,7 +412,7 @@ public class UsuarioController implements Observer {
     public ResponseEntity setSenha(@RequestBody Usuario usuario) {
         if (!usuarios.isEmpty()) {
             if (usuario.getSenha() != null) {
-                usuarioRepository.updateSenha(usuario.getSenha(), usuarios.get(0).getIdUsuario());
+                usuarioRepository.updateSenha(bCrypt.encode(usuario.getSenha()), usuarios.get(0).getIdUsuario());
                 return ResponseEntity.ok().build();
             } else {
                 return ResponseEntity.badRequest().build();

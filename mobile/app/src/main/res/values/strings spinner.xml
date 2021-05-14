@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_genero">
+        <item><b>Gênero Musical</b></item>
+        <item>Rock</item>
+        <item>Pop</item>
+        <item>Indie</item>
+        <item>MPB</item>
+        <item>Sertanejo</item>
+        <item>Rap</item>
+        <item>Samba</item>
+        <item>Pagode</item>
+    </string-array>
+
+    <string-array name="array_instrumento">
+        <item><b>Instrumento</b></item>
+        <item>Violão</item>
+        <item>Guitarra</item>
+        <item>Baixo</item>
+        <item>Vocal</item>
+        <item>Teclado</item>
+        <item>Bateria</item>
+        <item>Cavaco</item>
+        <item>Pandeiro</item>
+    </string-array>
+
+    <string-array name="array_estados">
+        <item><b>Estado</b></item>
+        <item>Acre</item>
+        <item>Alagoas</item>
+        <item>Amapá</item>
+        <item>Amazonas</item>
+        <item>Bahia</item>
+        <item>Ceará</item>
+        <item>Espírito Santo</item>
+        <item>Goiás</item>
+        <item>Maranhão</item>
+        <item>Mato Grosso</item>
+        <item>Mato Grosso do Sul</item>
+        <item>Minas Gerais</item>
+        <item>Pará</item>
+        <item>Paraíba</item>
+        <item>Paraná</item>
+        <item>Pernambuco</item>
+        <item>Piauí</item>
+        <item>Rio de Janeiro</item>
+        <item>Rio Grande do Norte</item>
+        <item>Rio Grande do Sul</item>
+        <item>Roraima</item>
+        <item>Santa Catarina</item>
+        <item>São Paulo</item>
+        <item>Sergipe</item>
+        <item>Tocantins</item>
+        <item>Distrito Federal</item>
+    </string-array>
+
+
+</resources>
