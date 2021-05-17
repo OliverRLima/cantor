@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.musicall.R
+import com.example.musicall.conexaoApi.modelos.PublicacaoApi
+import retrofit2.Call
+import retrofit2.Response
 
 class ManagerInvitesFragment : Fragment() {
 
@@ -17,15 +20,16 @@ class ManagerInvitesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_screeninvites, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    fun onResponse(call: Call<List<PublicacaoApi>>, response: Response<List<PublicacaoApi>>) {
         val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-        val fragment = ManagerInvitesFragment()
 
-        fragmentTransaction?.add(R.id.ll_invite, fragment)
+        response.body()?.forEach {
+//            val titulo = "${it.nome} - ${it.instrumento} - ${it.dataAniversario} - ${it.cidade} - ${it.genero}"
+//            val fragment = CardPublicacoes(titulo,it.publicacao)
+//            fragmentTransaction?.add(R.id.ll_perfil, fragment)
 
+        }
         fragmentTransaction?.commit()
-
-        super.onViewCreated(view, savedInstanceState)
     }
 
 }

@@ -15,7 +15,7 @@ object ConexaoApiMusicall {
 
     fun criar(): ApiMapeador {
         return Retrofit.Builder()
-            .baseUrl("https://172.20.208.1:8080/")
+            .baseUrl("https://192.168.56.1:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getUnsafeOkHttpClient())
                 .build()

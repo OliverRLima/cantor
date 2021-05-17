@@ -31,7 +31,7 @@ class Info0 : AppCompatActivity() {
             caledario.set(Calendar.MONTH, monthOfYear)
             caledario.set(Calendar.DAY_OF_YEAR, dayOfMonth)
             ano = year
-            if (monthOfYear == 12){
+            if (monthOfYear >= 12){
                 data.setText(ferramentas.addZeros("${dayOfMonth}/${monthOfYear}/${year}"))
             } else {
                 data.setText(ferramentas.addZeros("${dayOfMonth}/${monthOfYear + 1}/${year}"))
