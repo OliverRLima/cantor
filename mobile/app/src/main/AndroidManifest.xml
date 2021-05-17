@@ -10,10 +10,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".AboutMusicall"></activity>
+        <activity android:name=".Home"></activity>
+        <activity android:name=".AboutMusicall" />
         <activity android:name=".InfoUser" />
         <activity android:name=".NewPassword" />
-        <activity android:name=".Home">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

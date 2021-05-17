@@ -21,7 +21,8 @@ public class InfoDadosController {
 
     @PutMapping("/usuario/{idUsuario}")
     public ResponseEntity alterarSenha(@RequestBody @Valid AlterarSenhaForm form, @PathVariable Integer idUsuario){
-        infoDadosService.alterarSenha(form, idUsuario);
+        boolean alterarSenha = infoDadosService.alterarSenha(form, idUsuario);
+        if (!alterarSenha) return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }
 

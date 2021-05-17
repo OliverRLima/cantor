@@ -41,10 +41,16 @@ public class InfoDadosService {
     @Autowired
     private ConviteRepository conviteRepository;
 
-    public void alterarSenha(AlterarSenhaForm form, Integer idUsuario) {
+    public boolean alterarSenha(AlterarSenhaForm form, Integer idUsuario) {
+        Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
+
+        if (!usuario.isPresent()){
+            return false;
+        }
         BCryptPasswordEncoder encriptador = new BCryptPasswordEncoder();
         String senha = encriptador.encode(form.getSenha());
         usuarioRepository.updateSenha(senha, idUsuario);
+        return true;
     }
 
     public DadosDto pegarDados(Integer idUsuario) {

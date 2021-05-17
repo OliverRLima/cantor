@@ -15,32 +15,13 @@ class Home : AppCompatActivity() {
     lateinit var preferencias: SharedPreferences
     lateinit var cadastro: Intent
     lateinit var feed: Intent
-    val ferramentas = Encapsulados()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        println("home iniciado")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-
         cadastro = Intent(this, Info0::class.java)
         feed = Intent(this, MainActivity::class.java)
-        preferencias = getSharedPreferences("AUTENTICACAO", MODE_PRIVATE)
-        val ultimoUsuario = preferencias.getInt("idUsuario", -1)
-        val idInfoUsuario = preferencias.getInt("idInfoUsuario", -1)
-        val idRedeSocial = preferencias.getInt("idRedeSocial", -1)
-        println(ultimoUsuario)
-        println(idInfoUsuario)
-        println(idRedeSocial)
-
-        if (idInfoUsuario < 0) {
-            enDeslogar()
-        } else if (idInfoUsuario == 0) {
-            startActivity(cadastro)
-        } else {
-            startActivity(feed)
-        }
-
     }
 
     fun login(view: View) {
@@ -48,6 +29,7 @@ class Home : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
     fun sair(view: View) {
         enDeslogar()
         finish()
@@ -55,6 +37,7 @@ class Home : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
     fun registrar(view: View) {
 
         val intent = Intent(this, ScreenRegistrar::class.java).apply {
@@ -73,7 +56,9 @@ class Home : AppCompatActivity() {
     }
 
     fun enDeslogar() {
-
+        val editor = preferencias.edit()
+        editor.clear()
+        editor.commit()
     }
 
 }

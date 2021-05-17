@@ -3,15 +3,14 @@ package br.com.musicall.api.aplicacao;
 import br.com.musicall.api.controllers.form.PublicacaoForm;
 import br.com.musicall.api.dominios.*;
 import br.com.musicall.api.dto.PublicacaoDto;
+import br.com.musicall.api.dto.PublicacaoUsuarioDto;
 import br.com.musicall.api.repositorios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PublicacaoService {
@@ -31,10 +30,10 @@ public class PublicacaoService {
     @Autowired
     private GeneroRepository generoRepository;
 
-    public List<PublicacaoDto> getPublicacoesDoUsuario(Integer idUsuario) {
+    public List<PublicacaoUsuarioDto> getPublicacoesDoUsuario(Integer idUsuario) {
         Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
         if (usuario.isEmpty()) return null;
-        return getPublicacoesDto(usuario.get());
+        return getPublicacoesUsuarioDto(usuario.get());
     }
 
     public boolean publicar(PublicacaoForm form, Integer idUsuario) {
@@ -55,75 +54,76 @@ public class PublicacaoService {
         return true;
     }
 
-    public List<PublicacaoDto> pesquisarPublicacoes(Integer idUsuario, String chave, String valor) {
+    public List<PublicacaoDto> pesquisarPublicacoes(Integer idUsuario, String valor) {
 
         Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
         if (usuario.isEmpty()) return null;
 
-        switch (chave){
-            case "usuario":
-                List<Usuario> usuarios = usuarioRepository.findByNome(valor);
-                if (usuarios.isEmpty()) return null;
-                return getPublicacoesPesquisadasPorUsuario(usuarios);
-            case "estado":
-                List<InfoUsuario> estados = infoUsuarioRepository.findByEstado(valor);
-                if (estados.isEmpty()) return null;
-                return getPublicacaoPorInfo(estados);
-            case "cidade":
-                List<InfoUsuario> cidades = infoUsuarioRepository.findByCidade(valor);
-                if (cidades.isEmpty()) return null;
-                return getPublicacaoPorInfo(cidades);
-            case "instrumento":
-                List<Instrumento> instrumentos = instrumentoRepository.findByInstrumento(valor);
-                if (instrumentos.isEmpty()) return null;
-                return getPublicacoesPesquisadasPorInstrumento(instrumentos);
-            case "genero":
-                List<Genero> generos = generoRepository.findByGeneroMusical(valor);
-                if (generos.isEmpty()) return null;
-                return getPublicacoesPesquisadasPorGenero(generos);
-            default:
-                return null;
+        HashSet<PublicacaoDto> publicacoesPesquisadas = new HashSet<>();
+
+        List<Usuario> usuarios = usuarioRepository.findByNome(valor);
+        List<InfoUsuario> estados = infoUsuarioRepository.findByEstado(valor);
+        List<InfoUsuario> cidades = infoUsuarioRepository.findByCidade(valor);
+        List<Instrumento> instrumentos = instrumentoRepository.findByInstrumento(valor);
+        List<Genero> generos = generoRepository.findByGeneroMusical(valor);
+
+        if (!usuarios.isEmpty()) {
+            publicacoesPesquisadas = getPublicacoesPesquisadasPorUsuario(publicacoesPesquisadas, usuarios);
         }
+
+        if (!estados.isEmpty()) {
+            publicacoesPesquisadas = getPublicacaoPorInfo(publicacoesPesquisadas, estados);
+        }
+
+        if (!cidades.isEmpty()) {
+            publicacoesPesquisadas = getPublicacaoPorInfo(publicacoesPesquisadas, cidades);
+        }
+
+        if (!instrumentos.isEmpty()) {
+            publicacoesPesquisadas = getPublicacoesPesquisadasPorInstrumento(publicacoesPesquisadas, instrumentos);
+        }
+
+        if (!generos.isEmpty()) {
+            publicacoesPesquisadas = getPublicacoesPesquisadasPorGenero(publicacoesPesquisadas, generos);
+        }
+
+        return publicacoesPesquisadas.stream().sorted(Comparator.comparingInt(PublicacaoDto::getIdUsuario).reversed()).collect(Collectors.toList());
     }
 
-    private List<PublicacaoDto> getPublicacoesPesquisadasPorGenero(List<Genero> generos) {
-        List<PublicacaoDto> publicacoesPesquisadas = new ArrayList<>();
+    private HashSet<PublicacaoDto> getPublicacoesPesquisadasPorGenero(HashSet<PublicacaoDto> publicacaoes, List<Genero> generos) {
+        HashSet<PublicacaoDto> publicacoesPesquisadas = publicacaoes;
         generos.forEach(genero -> {
             Usuario usuario = usuarioRepository.findById(genero.getUsuario().getIdUsuario()).get();
             publicacoesPesquisadas.addAll(getPublicacoesDto(usuario));
         });
-        publicacoesPesquisadas.sort(Comparator.comparing(s -> s.getIdPublicacao()));
         return publicacoesPesquisadas;
 
     }
 
-    private List<PublicacaoDto> getPublicacoesPesquisadasPorInstrumento(List<Instrumento> instrumentos) {
-        List<PublicacaoDto> publicacoesPesquisadas = new ArrayList<>();
+    private HashSet<PublicacaoDto> getPublicacoesPesquisadasPorInstrumento(HashSet<PublicacaoDto> publicacaoes, List<Instrumento> instrumentos) {
+        HashSet<PublicacaoDto> publicacoesPesquisadas = publicacaoes;
         instrumentos.forEach(instrumento -> {
             Usuario usuario = usuarioRepository.findById(instrumento.getUsuario().getIdUsuario()).get();
             publicacoesPesquisadas.addAll(getPublicacoesDto(usuario));
         });
-        publicacoesPesquisadas.sort(Comparator.comparing(s -> s.getIdPublicacao()));
         return publicacoesPesquisadas;
     }
 
-    private List<PublicacaoDto> getPublicacaoPorInfo(List<InfoUsuario> infoUsuarios) {
-        List<PublicacaoDto> publicacoesPesquisadas = new ArrayList<>();
+    private HashSet<PublicacaoDto> getPublicacaoPorInfo(HashSet<PublicacaoDto> publicacaoes, List<InfoUsuario> infoUsuarios) {
+        HashSet<PublicacaoDto> publicacoesPesquisadas = publicacaoes;
         infoUsuarios.forEach(infoUsuario -> {
             Usuario usuario = usuarioRepository.findByInfoUsuarioIdInfoUsuario(infoUsuario.getIdInfoUsuario()).get();
             publicacoesPesquisadas.addAll(getPublicacoesDto(usuario));
         });
-        publicacoesPesquisadas.sort(Comparator.comparing(s -> s.getIdPublicacao()));
         return publicacoesPesquisadas;
     }
 
-    private List<PublicacaoDto> getPublicacoesPesquisadasPorUsuario(List<Usuario> usuarios) {
-        List<PublicacaoDto> publicacoesPesquisadas = new ArrayList<>();
+    private HashSet<PublicacaoDto> getPublicacoesPesquisadasPorUsuario(HashSet<PublicacaoDto> publicacaoes, List<Usuario> usuarios) {
+        HashSet<PublicacaoDto> publicacaoDtos = publicacaoes;
         usuarios.forEach(usuario -> {
-            publicacoesPesquisadas.addAll(getPublicacoesDto(usuario));
+            publicacaoes.addAll(getPublicacoesDto(usuario));
         });
-        publicacoesPesquisadas.sort(Comparator.comparing(s -> s.getIdPublicacao()));
-        return publicacoesPesquisadas;
+        return publicacaoDtos;
     }
 
     private List<PublicacaoDto> getPublicacoesDto(Usuario usuario) {
@@ -133,6 +133,13 @@ public class PublicacaoService {
 
         List<PublicacaoDto> publicacoesDto = new ArrayList<>();
         publicacoes.forEach(publicacao -> publicacoesDto.add(new PublicacaoDto(publicacao, instrumento, genero)));
+        return publicacoesDto;
+    }
+
+    private List<PublicacaoUsuarioDto> getPublicacoesUsuarioDto(Usuario usuario) {
+        List<Publicacao> publicacoes = publicacaoRepository.findAllByUsuarioIdUsuario(usuario.getIdUsuario());
+        List<PublicacaoUsuarioDto> publicacoesDto = new ArrayList<>();
+        publicacoes.forEach(publicacao -> publicacoesDto.add(new PublicacaoUsuarioDto(publicacao)));
         return publicacoesDto;
     }
 }

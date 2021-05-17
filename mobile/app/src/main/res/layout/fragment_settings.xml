@@ -80,6 +80,7 @@
                 android:textColor="#CD4242"
                 android:textSize="15sp"
                 android:layout_marginTop="20dp"
+                android:onClick="deletarConta"
                 android:paddingLeft="10dp" />
 
             <View

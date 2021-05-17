@@ -23,7 +23,7 @@ public class DadosForm {
     @NotNull @NotEmpty @Length(min = 10)
     private String instagram;
 
-    @NotNull @NotEmpty @Length(min = 11)
+    @NotNull @NotEmpty @Length(min = 8)
     private String telefone;
 
     @NotNull @NotEmpty

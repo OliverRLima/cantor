@@ -3,8 +3,8 @@ INSERT INTO INFO_USUARIO(CIDADE, DATA_ANIVERSARIO,DESCRICAO,ESTADO) VALUES
 ('Osasco','1998-01-01','Padrao','SP');
 
 INSERT INTO REDE_SOCIAL (FACEBOOK,INSTAGRAM,TWITTER) VALUES
-('face.com','insta.com','twitter.com'),
-('facebook.com','instagram.com','twit.com');
+('face.com','insta.com','11912345678'),
+('facebook.com','instagram.com','11987654321');
 
 INSERT INTO USUARIO (EMAIL,NOME,NOTIFICADO,SENHA,INFO_USUARIO_ID_INFO_USUARIO, REDE_SOCIAL_ID_REDE_SOCIAL) VALUES
 ('mariana.sampaio@gmail.com', 'Mariana Sampaio', false, '$2a$10$z2//24hULq0N9e9okoWxa.lflLCqM0ApR0R3btqpxO.rf/8LpVBeW',1,1),

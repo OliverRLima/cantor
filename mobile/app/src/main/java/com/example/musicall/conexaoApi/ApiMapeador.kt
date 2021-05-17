@@ -14,21 +14,42 @@ interface ApiMapeador {
 
     @POST("cadastrar")
     fun cadastrar(@Body usuario: UsuarioCadastro): Call<UsuarioCadastradoApi>
-    //
-    @POST("cadastrar/dados/{idUsuario}")
-    fun cadastrarInfo(@Body dados: Dados, @Path("id") id:Int): Call<Dados>
+    // 201 - cadastro realizado
+    // 400 - usuario já cadastrado ou campos inválidos
 
-    @POST("publicacoes")
-    fun fazerPublicacao(@Body publicacao: Publicacao, @Header ("Authorization") token: String): Call<Void>
+    @POST("cadastrar/dados/{idUsuario}")
+    fun cadastrarInfo(@Body dados: Dados, @Path("idUsuario") idUsuario:Int): Call<Dados>
+    // 201 - cadastro realizado
+    // 400 - campos inválidos
+
+    @POST("publicacoes/{idUsuario}")
+    fun fazerPublicacao(@Body publicacao: Publicacao, @Header ("Authorization") token: String, @Path("idUsuario") idUsuario:Int): Call<Void>
+    // 200 - publicado
+    // 400 - idUsuario não corresponde a nenhum usuário
+    // 403 - Token inválido
 
     @POST("convites/{idUsuario}/{idConvidado}")
     fun enviarConvite(@Path ("idUsuario") idUsuario: Int, @Path("idConvidado") idConvidado: Int, @Header ("Authorization") token: String): Call<Void>
+    // 200 - convite enviado
+    // 400 - convite já enviado
+    // 403 - Token inválido
+
+    @GET("auth")
+    fun verificaToken(@Header ("Authorization") token: String): Call<Void>
+    // 200 - token válido
+    // 403 - Token inválido
 
     @GET("dados/{idUsuario}")
-    fun getDadosUsuario(@Path("idUsuario") idUsuario: Int, @Header ("Authorization") token: String): Call<Dados>
+    fun getDadosUsuario(@Path("idUsuario") idUsuario: Int, @Header ("Authorization") token: String): Call<DadosApi>
+    // 200 - retorna os dados do usuário
+    // 403 - Token inválido
+    // 404 - idUsuario não encontrado
 
-    @GET("dados/{idUsuario}")
-    fun getPublicacoesUsuario(@Path("idUsuario") idUsuario: Int, @Header ("Authorization") token: String): Call<List<PublicacaoApi>>
+    @GET("publicacoes/{idUsuario}")
+    fun getPublicacoesUsuario(@Path("idUsuario") idUsuario: Int, @Header ("Authorization") token: String): Call<List<PublicacaoUsuarioApi>>
+    // 200 - devolve a lista de publicacoes
+    // 403 - Token inválido
+    // 404 - idUsuario não corresponde a nenhum usuário
 
     @GET("medalhas/{idUsuario}")
     fun getMedalhasUsuario(@Path("idUsuario") idUsuario: Int, @Header ("Authorization") token: String): Call<MedalhaApi>
@@ -39,22 +60,38 @@ interface ApiMapeador {
     @GET("convites/enviados/{idUsuario}")
     fun getConvitesEnviados(@Path("idUsuario") idUsuario: Int, @Header ("Authorization") token: String): Call<List<ConviteEnviadoApi>>
 
-    @GET("publicacoes/pesquisar/{idUsuario}/{chave}/{valor}")
-    fun getPublicacoesCidade(@Path("idUsuario") idUsuario: Int, @Path("chave") chave: String, @Path("valor") valor: String, @Header ("Authorization") token: String): Call<List<PublicacaoApi>>
+    @GET("publicacoes/pesquisar/{idUsuario}/{valor}")
+    fun getPublicacoesFeed(@Path("idUsuario") idUsuario: Int, @Path("valor") valor: String, @Header ("Authorization") token: String): Call<List<PublicacaoApi>>
+    // 200 - buscou e encontrou publicacoes
+    // 403 - Token inválido
+    // 404 - buscou e não encontrou publicacoes
 
     @PUT("dados/alterar/{idUsuario}")
     fun alterarDadosUsuario(@Path("idUsuario") idUsuario: Int, @Body dados: Dados, @Header ("Authorization") token: String): Call<Void>
+    // 200 - dados alterados
+    // 400 - campos inválidos
+    // 403 - Token inválido
+    // 404 - usuario não encontrado
 
     @PUT("dados/usuario/{idUsuario}")
     fun alterarSenha(@Path("idUsuario") idUsuario: Int, @Body usuarioSenha: UsuarioSenha, @Header ("Authorization") token: String): Call<Void>
+    // 200 - senha alterada
+    // 400 - idUsuario não corresponde a nenhum usuário
+    // 403 - token inválido
 
     @PUT("convites/{idConvite}")
     fun alterarVisibilidadeConvite(@Path("idConvite") idConvite: Int, @Header ("Authorization") token: String): Call<Void>
 
     @DELETE("publicacoes/{idPublicacao}")
     fun deletarPublicacao(@Path("idPublicacao") idPublicacao: Int, @Header ("Authorization") token: String): Call<Void>
+    // 200 - publicacao deletada
+    // 400 - idPublicacao não corresponde a nenhuma publicação
+    // 403 - token inválido
 
     @DELETE("dados/usuario/{idUsuario}")
     fun deletarUsuario(@Path("idUsuario") idUsuario: Int, @Header ("Authorization") token: String): Call<Void>
+    // 200 - conta excluida
+    // 403 - token inválido
+    // 404 - idUsuario não encontrado
 
 }

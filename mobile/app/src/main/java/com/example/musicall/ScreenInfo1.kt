@@ -16,21 +16,23 @@ class ScreenInfo1 : AppCompatActivity() {
 
     fun irInfo2(view: View) {
 
-        var erro: Boolean = false
+        var erro = false
 
-        val instr: Spinner = findViewById(R.id.sp_spinner1)
-        val instrTxt: String = instr.selectedItem.toString()
-
-        val gen: Spinner = findViewById(R.id.sp_spinner2)
+        val gen: Spinner = findViewById(R.id.sp_spinner1)
         val genTxt: String = gen.selectedItem.toString()
 
-        if (genTxt.length < 2) {
+        val instr: Spinner = findViewById(R.id.sp_spinner2)
+        val instrTxt: String = instr.selectedItem.toString()
+
+
+        if (genTxt == "Gênero Musical") {
             Toast.makeText(baseContext,"Escolha um genero", Toast.LENGTH_SHORT)
             erro = true
         }
-        if (instrTxt.length < 2) {
+
+        if (instrTxt == "Instrumento") {
             Toast.makeText(baseContext,"Escolha um instrumento", Toast.LENGTH_SHORT)
-           erro = true
+            erro = true
         }
 
         if (!erro) {

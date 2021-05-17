@@ -9,7 +9,7 @@ import java.time.Period;
 
 public class PublicacaoDto {
 
-    private Integer idPublicacao;
+    private Integer idUsuario;
     private String nome;
     private String instrumento;
     private String idade;
@@ -18,7 +18,7 @@ public class PublicacaoDto {
     private String texto;
 
     public PublicacaoDto(Publicacao publicacao, Instrumento instrumento, Genero genero){
-        this.idPublicacao = publicacao.getIdPublicacao();
+        this.idUsuario = publicacao.getUsuario().getIdUsuario();
         this.nome = publicacao.getUsuario().getNome();
         this.instrumento = instrumento.getInstrumento();
         this.idade = String.format("%d anos", getAnosIdade(publicacao));
@@ -34,8 +34,8 @@ public class PublicacaoDto {
         return anos;
     }
 
-    public Integer getIdPublicacao() {
-        return idPublicacao;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
     public String getNome() {

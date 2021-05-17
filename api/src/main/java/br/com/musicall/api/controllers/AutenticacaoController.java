@@ -12,10 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -43,6 +40,11 @@ public class AutenticacaoController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity verificarToken(){
+        return ResponseEntity.ok().build();
+    }
+
     private ResponseEntity verificarResposta(Authentication authentication) {
         Usuario logado = (Usuario) authentication.getPrincipal();
 
@@ -52,6 +54,6 @@ public class AutenticacaoController {
         String token = tokenService.gerarToken(authentication);
 
         medalhaService.atualizarMedalhas(logado.getIdUsuario());
-        return ResponseEntity.ok(new TokenDto(token, "Bearer", logado.getIdUsuario()));
+        return ResponseEntity.ok(new TokenDto(token, "Bearer", logado.getIdUsuario(), logado.getNome()));
     }
 }

@@ -45,7 +45,7 @@ public class ConviteController {
     public ResponseEntity convidar(@PathVariable Integer idUsuario, @PathVariable Integer idConvidado){
         Boolean convidado = conviteService.convidar(idUsuario, idConvidado);
         if (!convidado) return ResponseEntity.badRequest().build();
-        medalhaService.alterarMedalha("convites",idUsuario);
+        if (!medalhaService.alterarMedalha("convites",idUsuario)) return ResponseEntity.badRequest().build();
         return ResponseEntity.ok().build();
     }
 }

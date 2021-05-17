@@ -41,35 +41,4 @@ class Encapsulados : AppCompatActivity() {
         return resultado.substring(resultado.lastIndexOf(separador) + 1,resultado.length) +
                 resultado.substring(2,resultado.lastIndexOf(separador)) + separador + resultado.substring(0, 2)
     }
-
-    fun logar (view: View){
-        val apiMusicall = ConexaoApiMusicall.criar()
-
-        val usuario = Usuario("mariana.sampaio@gmail.com","senha123")
-        apiMusicall.logar(usuario).enqueue(object : Callback<UsuarioApi>{
-            override fun onResponse(call: Call<UsuarioApi>, response: Response<UsuarioApi>) {
-
-                when {
-                    response.code() == 200 -> {
-                        val usuarioAuth = response.body()!!
-                        Toast.makeText(baseContext, "Logado e completo", Toast.LENGTH_SHORT).show()
-                    }
-                    response.code() == 400 -> {
-
-                    }
-                    response.code() == 404 -> {
-
-                    }
-                    else -> {
-
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<UsuarioApi>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
 }

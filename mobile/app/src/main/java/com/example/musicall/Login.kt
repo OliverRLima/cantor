@@ -28,7 +28,6 @@ class Login : AppCompatActivity() {
         cadastro = Intent(this, Info0::class.java)
         feed = Intent(this, MainActivity::class.java)
         preferencias = getSharedPreferences("AUTENTICACAO", MODE_PRIVATE)
-        val ultimoUsuario = preferencias.getInt("idUsuario", -1)
     }
 
     fun entrar(view: View) {
@@ -72,11 +71,11 @@ class Login : AppCompatActivity() {
                         response.code() == 200 -> {
                             val usuarioApi = response.body()!!
                             val editor = preferencias.edit()
-                            editor.putInt("idUsuario", usuarioApi?.idUsuario)
+                            editor.putInt("idUsuario", usuarioApi.idUsuario)
                             editor.putString("token", String.format("%s %s", usuarioApi.tipo, usuarioApi.token))
+                            editor.putString("nome", usuarioApi.nome)
                             editor.commit()
-                            Toast.makeText(baseContext, "Logado e completo", Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(baseContext, "Logado e completo", Toast.LENGTH_SHORT).show()
                             startActivity(feed)
                         }
                         response.code() == 400 -> {

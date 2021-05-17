@@ -4,6 +4,7 @@ import br.com.musicall.api.aplicacao.MedalhaService;
 import br.com.musicall.api.aplicacao.PublicacaoService;
 import br.com.musicall.api.controllers.form.PublicacaoForm;
 import br.com.musicall.api.dto.PublicacaoDto;
+import br.com.musicall.api.dto.PublicacaoUsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -26,7 +27,7 @@ public class PublicacaoController {
     @GetMapping("/{idUsuario}")
     @Cacheable(value = "publicacoesUsuario")
     public ResponseEntity getPublicacoesUsuario(@PathVariable Integer idUsuario){
-        List<PublicacaoDto> publicacoes = publicacaoService.getPublicacoesDoUsuario(idUsuario);
+        List<PublicacaoUsuarioDto> publicacoes = publicacaoService.getPublicacoesDoUsuario(idUsuario);
 
         if (publicacoes == null){
             return ResponseEntity.notFound().build();
@@ -57,10 +58,10 @@ public class PublicacaoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/pesquisar/{idUsuario}/{chave}/{valor}")
-    public ResponseEntity pesquisarPublicacoes(@PathVariable Integer idUsuario, @PathVariable String chave, @PathVariable String valor){
-        List<PublicacaoDto> publicacoes = publicacaoService.pesquisarPublicacoes(idUsuario, chave, valor);
-        if (publicacoes == null) return ResponseEntity.badRequest().build();
+    @GetMapping("/pesquisar/{idUsuario}/{valor}")
+    public ResponseEntity pesquisarPublicacoes(@PathVariable Integer idUsuario, @PathVariable String valor){
+        List<PublicacaoDto> publicacoes = publicacaoService.pesquisarPublicacoes(idUsuario, valor);
+        if (publicacoes.isEmpty()) return ResponseEntity.notFound().build();
         medalhaService.alterarMedalha("pesquisas", idUsuario);
         return ResponseEntity.ok(publicacoes);
     }

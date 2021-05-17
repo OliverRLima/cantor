@@ -27,18 +27,20 @@ public class MedalhaService {
     public RegistroMedalha getRegistroMedalha(Integer idUsuario) {
         Optional<RegistroMedalha> registroMedalha = regMedalhaRepository.findByUsuarioIdUsuario(idUsuario);
 
-        if (!registroMedalha.isPresent()){
+        if (!registroMedalha.isPresent()) {
             return null;
         }
         return registroMedalha.get();
     }
 
-    public void alterarMedalha(String campo, Integer idUsuario) {
+    public Boolean alterarMedalha(String campo, Integer idUsuario) {
         Optional<Medalha> medalha = medalhasRepository.findByUsuarioIdUsuario(idUsuario);
-
+        if (medalha.isEmpty()) {
+            return false;
+        }
         switch (campo) {
             case "infos":
-                if(!medalha.get().getTodasInfos()) this.medalhasRepository.alterarTodasInfos(idUsuario);
+                if (!medalha.get().getTodasInfos()) this.medalhasRepository.alterarTodasInfos(idUsuario);
             case "pesquisas":
                 this.medalhasRepository.alterarNumPesquisas(medalha.get().getNumPesquisas() + 1, idUsuario);
             case "publicacoes":
@@ -47,6 +49,7 @@ public class MedalhaService {
                 this.medalhasRepository.alterarNumConvites(medalha.get().getNumConvites() + 1, idUsuario);
             default:
         }
+        return true;
     }
 
     public void atualizarMedalhas(Integer idUsuario) {
@@ -75,7 +78,6 @@ public class MedalhaService {
                 medalha.get().getNumPublicacoes() == 0);
 
 
-
         atualizarCampo("tempo", idUsuario,
                 registroMedalha.get().getRegDataInicio() != 3,
                 (LocalDate.now().getYear() - medalha.get().getDataInicio().getYear()) == 2,
@@ -87,19 +89,19 @@ public class MedalhaService {
     }
 
     private void atualizarCampoTodasInfos(RegistroMedalha registroMedalha, Integer idUsuario) {
-        if (!registroMedalha.getRegTodasInfos()){
+        if (!registroMedalha.getRegTodasInfos()) {
             setMedalha(idUsuario, "infos", 1);
         }
     }
 
     private void atualizarCampo(String campo, Integer idUsuario, Boolean primeiraCondicao, Boolean segundaCondicao,
                                 Boolean terceiraCondicao, Boolean quartaCondicao, Boolean quintaCondicao) {
-        if (primeiraCondicao){
+        if (primeiraCondicao) {
             if (segundaCondicao) {
                 setMedalha(idUsuario, campo, 3);
             } else if (terceiraCondicao && quartaCondicao) {
                 setMedalha(idUsuario, campo, 1);
-            } else if (quintaCondicao){
+            } else if (quintaCondicao) {
                 setMedalha(idUsuario, campo, 0);
             } else {
                 setMedalha(idUsuario, campo, 2);
